@@ -74,12 +74,23 @@ Resources:
                     - logs:PutLogEvents
                   Resource: "*"
   
+  LambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: LambdaLayer
+      Description: Python Lambda Layer
+      ContentUri: ./layer.zip
+      CompatibleRuntimes:
+        - python3.12
+  
   AWSLambdaSlackAppFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: app.lambda_handler
       Runtime: python3.12
       CodeUri: ./src
+      Layers:
+        - !Ref LambdaLayer
       Description: Slack App Function
       Role: !GetAtt AWSLambdaSlackAppFunctionRole.Arn
       Events:
