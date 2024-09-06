@@ -36,8 +36,9 @@ sam build & sam deploy --no-confirm-changeset --no-disable-rollback --capabiliti
 # Packages
 ```
 # mkdir layer
-# pip install slack_bolt -t ./layer/python
+# pip install slack_bolt requests -t ./layer/python
 # Zip layer/ -> layer.zip
 
 slack_bolt
+requests
 ```
